@@ -1,0 +1,15 @@
+Architecture: Model-View-Controller (MVC)
+
+Description: An architectural pattern for separating the concerns of information, presentation, and user interaction.
+1. Model: Encapsulates the application's information and core "business logic".
+2. View: Encapsulates the display choices and presentation logic; it renders the Model for the user.
+3. Controller: Encapsulates the interaction semantics; it handles user input (events) and updates the Model.
+The Model notifies the View and Controller when its state changes (often using Implicit Invocation).
+
+KeyComponents: Model, View, Controller
+
+Pros: Excellent separation of concerns. High modifiability (e.g., you can change the View without touching the Model).
+
+Cons: Can be complex for simple applications. The Controller can sometimes become "bloated" with too much logic.
+
+UseCases: GUI applications. Web applications.

@@ -1,0 +1,11 @@
+Architecture: Peer-to-Peer (P2P)
+
+Description: A style where state and behavior are distributed among components called Peers. Each peer is an independent component that can act as *both* a client and a server. The system topology is a dynamic network.
+
+KeyComponents: Peers, Network Protocols, Network Messages
+
+Pros: Supports decentralized computing. Highly robust in the face of node failures. Scalable in terms of access to resources.
+
+Cons: The discovery and network protocols can be complex to design and manage.
+
+UseCases: File sharing networks (e.g., BitTorrent). Blockchain.

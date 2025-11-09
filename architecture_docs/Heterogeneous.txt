@@ -1,0 +1,16 @@
+Architecture: Heterogeneous
+
+Description: A meta-architecture or concept describing how most real-world systems are built. A heterogeneous architecture is one that involves a combination of several "pure" architectural styles.
+
+Ways to combine styles:
+1. Hierarchy: A component in one style may be internally structured using a completely different style (e.g., a "filter" in a pipeline is internally built using an OO style).
+2. Mixture: A single component may use a mixture of connectors (e.g., a component reads from a pipe but also accesses a central repository).
+3. Elaboration: One level of architectural description is completely elaborated in a different style (e.g., a system is designed as a Blackboard, but that Blackboard is *implemented* using an Interpreter).
+
+KeyComponents: Varies based on the styles being combined.
+
+Pros: Allows an architect to use the "right tool for the right job" within different parts of a complex system.
+
+Cons: Can increase system complexity and make it harder to understand the high-level design.
+
+UseCases: Most complex systems. Examples: The PROVOX case study (Layered and OO). Compilers (Repository and Pipeline). The HEARSAY-II system (Blackboard and Interpreter).

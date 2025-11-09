@@ -1,0 +1,11 @@
+Architecture: Client-Server
+
+Description: An architectural style with two types of components: Clients and Servers. Clients are components that make requests. Servers are components that provide services in response to requests. Servers do not know the number or identities of clients, but clients must know the server's identity.
+
+KeyComponents: Clients, Servers, Network Interaction Protocols (e.g., RPC)
+
+Pros: Clear separation of concerns. Centralizes services and data, which can be easier to manage and protect.
+
+Cons: The server can become a performance bottleneck and a single point of failure.
+
+UseCases: Web browsers (client) and web servers. Database applications.

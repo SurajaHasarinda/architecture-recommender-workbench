@@ -1,0 +1,11 @@
+Architecture: Publish-Subscribe (Pub-Sub)
+
+Description: A specific form of the Implicit Invocation style. "Publishers" broadcast messages to specific "topics" without knowing who the subscribers are. "Subscribers" register to receive messages from those topics. This style is highly efficient for one-way dissemination of information.
+
+KeyComponents: Publishers, Subscribers, Topics (on a message broker)
+
+Pros: Extremely low coupling between components. Highly scalable. Efficient one-way data distribution.
+
+Cons: Same as Implicit Invocation: loss of control, debugging complexity, and potential for data exchange issues.
+
+UseCases: News feeds. Stock tickers. Notification systems.

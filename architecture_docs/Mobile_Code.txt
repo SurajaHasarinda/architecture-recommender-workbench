@@ -1,0 +1,11 @@
+Architecture: Mobile-Code
+
+Description: A style where a data element (a representation of a program or script) is dynamically transformed into a data processing component. The code itself is "mobile" and is sent from one component to an "Execution Dock" on another component, which then compiles or interprets it for execution.
+
+KeyComponents: Execution Dock, Code Compiler/Interpreter, Network Protocols, Code (as data)
+
+Pros: High flexibility and dynamism. Can move the computational load from a central server to distributed clients.
+
+Cons: Major security risks associated with executing code from an external source.
+
+UseCases: JavaScript in web browsers (Code-on-Demand). Java Applets. ActiveX controls. Embedded Word/Excel macros.

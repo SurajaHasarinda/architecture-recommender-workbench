@@ -1,0 +1,11 @@
+Architecture: Layered
+
+Description: A style that organizes a system hierarchically, where each layer provides services to the layer directly above it and acts as a client to the layer directly below it. Each layer exposes its services through a public interface (API). In a strict layered system, interactions are constrained to only adjacent layers.
+
+KeyComponents: Layers, Protocols, APIs, Client, Server
+
+Pros: Supports design based on increasing levels of abstraction. High evolvability, as changes in one layer affect at most the two adjacent layers. Supports reuse, as different implementations of a layer can be swapped as long as the interface is preserved.
+
+Cons: Not all systems are easily structured in a layered fashion. Performance can be a problem, as a request may have to pass through many layers, tempting designers to "skip" layers and break the architecture. It can be difficult to define the correct levels of abstraction.
+
+UseCases: Operating systems. Layered communication protocols (like the OSI model). Database systems.

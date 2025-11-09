@@ -1,0 +1,14 @@
+Architecture: State-Logic-Display (Three-Tiered Pattern)
+
+Description: An architectural pattern that separates a system into three logical tiers. This is a common implementation of the Client-Server style.
+1. Front Tier (Display): Contains the user interface functionality.
+2. Middle Tier (Logic): Contains the application's major business logic.
+3. Back Tier (State): Contains the data access and storage functionality (e.g., the database).
+
+KeyComponents: Front Tier, Middle Tier, Back Tier
+
+Pros: Good separation of concerns. Allows for independent scaling and development of the different tiers.
+
+Cons: Can introduce network latency between tiers.
+
+UseCases: Business applications. E-commerce systems. Web-based applications.

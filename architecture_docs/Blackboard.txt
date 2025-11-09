@@ -1,0 +1,11 @@
+Architecture: Blackboard
+
+Description: A specialized repository style designed for complex, "opportunistic" problem-solving. It consists of three parts: 1) The Blackboard, a central data structure holding the problem-solving state. 2) Knowledge Sources, which are independent components that operate on the blackboard. 3) A Control component, which is driven by the blackboard's state and opportunistically activates knowledge sources. Knowledge sources interact *only* through the blackboard.
+
+KeyComponents: Blackboard (central data), Knowledge Sources (independent components), Control (scheduler/monitor)
+
+Pros: Excellent for complex problems with no clear or predetermined solution path. Highly extensible by adding new knowledge sources.
+
+Cons: The control logic can become extremely complex. The blackboard can be a performance and concurrency bottleneck.
+
+UseCases: AI systems. Speech recognition (e.g., HEARSAY-II). Pattern recognition.

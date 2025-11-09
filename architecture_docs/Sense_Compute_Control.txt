@@ -1,0 +1,11 @@
+Architecture: Sense-Compute-Control
+
+Description: An architectural pattern for structuring embedded control applications. The architecture is defined by a central logic loop: 1) read all sensor values (Sense), 2) compute control outputs (Compute), and 3) send controls to all actuators (Control).
+
+KeyComponents: Sensors, Computer (Logic), Actuators
+
+Pros: Simple and predictable loop for basic control systems.
+
+Cons: Computationally demanding because all information is processed centrally. Impractical in most complex AI and robotics applications, as it does not scale.
+
+UseCases: Simple embedded control. The Lunar Lander game example.

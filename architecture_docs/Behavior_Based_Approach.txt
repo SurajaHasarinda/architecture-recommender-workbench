@@ -1,0 +1,11 @@
+Architecture: Behavior-Based Approach
+
+Description: An architectural pattern for AI and robotics that acts as a solution to the problems of the Sense-Compute-Control pattern. The system is implemented as a set of behavioral modules (e.g., "Obstacle avoidance", "Random walk") that run concurrently. An Action Selection Mechanism (ASM) or Switch decides which module's "Proposed Actions" to execute.
+
+KeyComponents: Behavioral Modules, Sensory Input, Action Selection Mechanism (ASM), Switch, Proposed Actions
+
+Pros: More scalable and robust than the central Sense-Compute-Control loop. Allows for incremental development of complex behaviors.
+
+Cons: The interaction between behaviors can become complex to manage and debug.
+
+UseCases: AI and robotics.

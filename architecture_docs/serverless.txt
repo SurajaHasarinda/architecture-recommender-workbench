@@ -1,0 +1,11 @@
+Architecture: Serverless Architecture
+
+Description: Serverless architecture is a cloud-native development model where applications are built using cloud provider's managed services and functions-as-a-service (FaaS). Developers write code in the form of stateless functions that are triggered by events, and the cloud provider automatically handles server provisioning, scaling, and management. Despite the name, servers are still used, but developers don't manage them directly.
+
+KeyComponents: Cloud Functions (AWS Lambda, Azure Functions, Google Cloud Functions), API Gateway, Cloud Storage Services, Managed Databases (DynamoDB, Firestore), Event Triggers, Message Queues, CDN, Authentication Service (e.g., Auth0, Cognito), Third-party APIs, Monitoring Services
+
+Pros: Zero server management required. Automatic scaling from zero to peak load. Pay only for actual usage (cost-effective for variable workloads). Fast time to market. Built-in high availability. Reduced operational complexity. Easy integration with cloud services. No infrastructure maintenance. Ideal for event-driven workloads. Forces good separation of concerns.
+
+Cons: Cold start latency for infrequently used functions. Vendor lock-in to cloud provider. Limited execution time per function (typically 5-15 minutes). Debugging and monitoring more complex. Difficult to test locally. Not cost-effective for consistently high traffic. Limited control over infrastructure. Stateless nature requires external state management. Potential for higher costs with very frequent invocations. Complex deployment coordination across many functions.
+
+UseCases: Applications with variable or unpredictable traffic. Event-driven applications and background jobs. Rapid prototypes and MVPs needing quick deployment. Small to medium APIs with sporadic usage. Scheduled tasks and cron jobs. Data processing pipelines. Webhook handlers. Mobile app backends. IoT data processing. Chatbots and voice assistants. Startups with limited DevOps resources. Applications with long idle periods. Single-page application backends.

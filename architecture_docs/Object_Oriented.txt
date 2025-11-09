@@ -1,0 +1,11 @@
+Architecture: Object-Oriented (OO)
+
+Description: An architectural style where components are Objects, which encapsulate data and their associated operations. Connectors are messages or method invocations between objects. A core principle is that an object's internal representation is hidden from other objects, and the object itself is responsible for maintaining its integrity.
+
+KeyComponents: Objects, Method Invocations, Messages, Interfaces
+
+Pros: Supports "infinite malleability," as an object's internal implementation can be changed without affecting its clients. Allows for a clean system decomposition into a set of interacting agents.
+
+Cons: Objects must know the identities of the other objects (servers) they need to invoke. Can lead to side-effect problems when multiple objects interact with a single, shared object.
+
+UseCases: General purpose application development. GUI-driven applications. Simulation systems (like the Lunar Lander example).

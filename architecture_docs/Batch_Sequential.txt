@@ -1,0 +1,11 @@
+Architecture: Batch Sequential
+
+Description: A data-flow style where separate, independent programs are executed in a specific order. Data is passed as an aggregate (in a batch) from one program to the next. The producing program must complete its execution before the next program can begin. This is considered the "Granddaddy of Styles."
+
+KeyComponents: Independent Programs, Aggregate Data Files
+
+Pros: Simple, reliable for batch processing tasks.
+
+Cons: Highly inefficient for modern systems. Not interactive at all. Very low throughput.
+
+UseCases: Transaction processing in financial systems (e.g., end-of-day bank processing).

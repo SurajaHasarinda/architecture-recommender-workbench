@@ -1,0 +1,11 @@
+Architecture: Rule-Based
+
+Description: A system, often a form of the Interpreter style, that uses a collection of facts and rules to solve a problem. It consists of an "Inference Engine" (the interpreter) that parses user input (a fact or a query) and a "Knowledge Base" (the facts and rules). When given a query, the inference engine finds and applies relevant rules to resolve it.
+
+KeyComponents: Inference Engine (Rule Interpreter), Knowledge Base (Facts and Rules), User Interface
+
+Pros: The system's logic can be easily modified by adding or deleting rules from the knowledge base, without recompiling the engine.
+
+Cons: When the number of rules becomes large, understanding the interactions and dependencies between them can become very difficult.
+
+UseCases: Expert systems. Business rule engines.

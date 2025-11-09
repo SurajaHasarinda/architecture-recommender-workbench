@@ -1,0 +1,11 @@
+Architecture: Process Control Systems
+
+Description: A style for systems intended to provide dynamic control of a physical environment. It is characterized as a feedback loop. Inputs from sensors are used by the control system to determine a set of outputs. These outputs are sent to actuators, which produce a new state in the environment, which is then read by the sensors, restarting the loop.
+
+KeyComponents: Sensors, Control System, Actuators, Feedback Loop
+
+Pros: Ideal for real-time monitoring and control of physical processes.
+
+Cons: Tightly coupled to the specific hardware (sensors, actuators) of the domain.
+
+UseCases: Chemical production processes (e.g., the PROVOX case study). Industrial automation.

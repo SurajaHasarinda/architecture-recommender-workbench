@@ -1,0 +1,11 @@
+Architecture: Implicit Invocation (or Event-Based)
+
+Description: A style where components do not invoke each other directly. Instead, components "announce" (or broadcast) events. Other components, or "listeners," register an interest in those events. When an event is announced, the system itself (e.g., an event bus) implicitly invokes all registered listeners. The announcer is completely decoupled from the listeners.
+
+KeyComponents: Event Announcers, Event Listeners, Event Bus, Events
+
+Pros: Eases system evolution and reuse, as new listeners can be added without modifying the announcing components.
+
+Cons: Components relinquish control over the computation. It's hard to know what components will respond, or in what order, making the system difficult to debug. Data exchange can be complex.
+
+UseCases: Integrating tools in programming environments (e.g., a debugger and an editor). Model-View-Controller (MVC) pattern. Database consistency constraints.

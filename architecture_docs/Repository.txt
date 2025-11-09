@@ -1,0 +1,11 @@
+Architecture: Repository
+
+Description: A style where the system is organized around a central data structure (the repository). It consists of two main component types: 1) the central data structure itself, which represents the current system state, and 2) a collection of independent components that operate on that central data. The way components are triggered defines the sub-style (e.g., traditional database vs. blackboard).
+
+KeyComponents: Central Data Structure (Repository), Independent Components
+
+Pros: Centralized data management. Independent components are decoupled from each other.
+
+Cons: The repository can become a performance bottleneck and a single point of failure.
+
+UseCases: Database management systems. Programming environments. Modern compilers (using a shared Abstract Syntax Tree).

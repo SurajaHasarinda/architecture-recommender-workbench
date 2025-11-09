@@ -1,0 +1,11 @@
+Architecture: Interpreter (or Table-Driven)
+
+Description: A style that produces a virtual machine in software. It uses an "Interpretation Engine" to parse and execute input commands written in a specialized language, updating a "Program State" as it runs. This style is used to close the gap between the complex semantics of a program and the actual hardware.
+
+KeyComponents: Interpretation Engine (Interpreter), Program Being Interpreted (pseudo-code), Program State (working memory), Interpreter State (e.g., instruction pointer)
+
+Pros: Highly dynamic behavior. The system's capabilities can be changed by modifying the script/program without recompiling the engine. Superb for end-user programmability and extensibility.
+
+Cons: Performance overhead from the "on-the-fly" interpretation of commands.
+
+UseCases: Scripting languages (Python, JavaScript). Rule-Based Systems. SQL query engines. Lisp and Scheme.

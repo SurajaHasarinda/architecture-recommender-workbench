@@ -1,0 +1,11 @@
+Architecture: Main Program and Subroutines
+
+Description: A traditional, language-influenced style where the system is organized around a main program that acts as the primary driver. This main program controls the sequencing of execution by making calls to a set of subordinate components, or subroutines. Control is centralized in the main program.
+
+KeyComponents: Main Program, Subroutines, Procedure Calls
+
+Pros: Simple to understand for small systems. Follows a traditional, linear programming logic.
+
+Cons: Tightly coupled, making modification difficult. Does not scale well. Functionality is centralized, making it hard to reuse or test components in isolation.
+
+UseCases: Small or simple programs. Early software systems.

@@ -1,0 +1,11 @@
+Architecture: Pipe and Filter
+
+Description: A data-flow style where components are "Filters" and connectors are "Pipes." Filters are independent components that incrementally transform an input data stream into an output data stream. Pipes are the connectors that serve as conduits for the data. A key invariant is that filters are independent, share no state, and have no knowledge of upstream or downstream filters.
+
+KeyComponents: Filters (components), Pipes (connectors), Data Streams
+
+Pros: Easy to understand system behavior as a composition of filters. High reusability and modifiability (filters can be added, replaced, or reordered). Naturally supports concurrent execution.
+
+Cons: Not good for interactive applications. Can lead to a batch organization of processing. May force a "lowest common denominator" data format, which requires parsing and unparsing overhead, hurting performance.
+
+UseCases: UNIX shell commands (e.g., ls | grep | sort). Signal processing applications. Traditionally, compilers.
