@@ -3,7 +3,18 @@ import os
 import pickle
 from typing import List, Dict, Any, Optional
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
+
+def cosine_similarity(X, Y=None):
+    """Simple cosine similarity implementation using numpy"""
+    if Y is None:
+        Y = X
+    
+    # Normalize the vectors
+    X_norm = X / np.linalg.norm(X, axis=1, keepdims=True)
+    Y_norm = Y / np.linalg.norm(Y, axis=1, keepdims=True)
+    
+    # Compute cosine similarity
+    return np.dot(X_norm, Y_norm.T)
 
 logger = logging.getLogger(__name__)
 
