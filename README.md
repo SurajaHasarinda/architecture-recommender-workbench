@@ -72,8 +72,8 @@ Give it your project requirements (team size, scale, budget, timeline, technical
 1. **Clone the repository:**
 
 ```powershell
-git clone <your-repo-url>
-cd "Advance-SE-Project"
+git clone https://github.com/SurajaHasarinda/architecture-recommender-workbench
+cd "architecture-recommender-workbench"
 ```
 
 2. **Set up environment variables:**
