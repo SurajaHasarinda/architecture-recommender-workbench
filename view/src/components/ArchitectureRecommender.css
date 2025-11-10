@@ -1,0 +1,991 @@
+/* Architecture Recommender Component Styles */
+.architecture-recommender {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Input Section */
+.input-section {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.input-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.context-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.01em;
+}
+
+.textarea-container {
+  position: relative;
+}
+
+.context-textarea {
+  width: 100%;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  min-height: 140px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.03);
+  color: #ffffff;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.context-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.context-textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 8px 24px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.context-textarea:disabled {
+  background-color: rgba(255, 255, 255, 0.01);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+
+.character-count {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 1rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.submit-btn, .reset-btn, .export-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  letter-spacing: 0.01em;
+}
+
+.submit-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.submit-btn:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.submit-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.reset-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.reset-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.reset-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.export-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.export-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.export-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Loading Animation */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error Message */
+.error-message {
+  background: rgba(255, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 100, 100, 0.2);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 16px rgba(255, 0, 0, 0.1);
+}
+
+.error-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: rgba(255, 150, 150, 0.9);
+  font-weight: 400;
+}
+
+.error-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: rgba(255, 150, 150, 0.7);
+  cursor: pointer;
+  padding: 0;
+  margin-left: 1rem;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.error-close:hover {
+  color: rgba(255, 200, 200, 0.9);
+}
+
+/* Recommendation Section */
+.recommendation-section {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideUp 0.6s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.recommendation-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.recommendation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f3f4f6;
+}
+
+.recommendation-header h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.architecture-title {
+  margin-bottom: 2rem;
+}
+
+.architecture-title h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 600;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  letter-spacing: -0.01em;
+}
+
+.explanation-section, .diagram-section {
+  margin-bottom: 2rem;
+}
+
+.explanation-section h4, .diagram-section h4 {
+  margin: 0 0 1rem 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.25rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.diagram-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.diagram-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.zoom-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  font-weight: 500;
+}
+
+.zoom-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.zoom-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.explanation-section p {
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  margin: 0;
+  text-align: justify;
+  font-weight: 300;
+}
+
+/* Diagram Styles */
+.diagram-container {
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  overflow: auto;
+  min-height: 250px;
+  max-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.mermaid-container {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  margin: 0 auto;
+}
+
+.mermaid-diagram {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mermaid SVG specific styles */
+.mermaid-diagram svg {
+  max-width: 80% !important;
+  max-height: 400px !important;
+  height: auto !important;
+  width: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+  transform: scale(0.85);
+  transform-origin: center center;
+}
+
+/* Mermaid node styling overrides */
+.mermaid-diagram .node rect,
+.mermaid-diagram .node circle,
+.mermaid-diagram .node ellipse,
+.mermaid-diagram .node polygon {
+  fill: #4f46e5 !important;
+  stroke: #374151 !important;
+  stroke-width: 2px !important;
+}
+
+.mermaid-diagram .node text {
+  fill: white !important;
+  font-weight: 600 !important;
+}
+
+.mermaid-diagram .edgePath path {
+  stroke: #6b7280 !important;
+  stroke-width: 2px !important;
+}
+
+.mermaid-diagram .edgeLabel {
+  background-color: white !important;
+  padding: 2px 4px !important;
+  border-radius: 4px !important;
+}
+
+.diagram-error {
+  color: rgba(255, 150, 150, 0.8);
+  text-align: center;
+  padding: 2rem;
+}
+
+.diagram-error p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.diagram-error details {
+  text-align: left;
+  background: rgba(255, 0, 0, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 100, 100, 0.15);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.diagram-error summary {
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.diagram-error pre {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  margin: 0.5rem 0 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .architecture-recommender {
+    padding: 1rem;
+  }
+
+  .input-section, .recommendation-section {
+    padding: 1.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .submit-btn, .reset-btn, .export-btn {
+    justify-content: center;
+  }
+
+  .recommendation-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .architecture-title h3 {
+    font-size: 1.5rem;
+  }
+
+  .diagram-container {
+    padding: 1rem;
+    min-height: 200px;
+    max-height: 400px;
+  }
+
+  .mermaid-container {
+    max-width: 100%;
+  }
+
+  .mermaid-diagram svg {
+    max-width: 95% !important;
+    max-height: 300px !important;
+    transform: scale(0.75) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .architecture-recommender {
+    padding: 0.5rem;
+  }
+
+  .input-section, .recommendation-section {
+    padding: 1rem;
+  }
+
+  .context-textarea {
+    font-size: 0.95rem;
+  }
+
+  .submit-btn, .reset-btn, .export-btn {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.25rem;
+  }
+
+  .diagram-container {
+    padding: 0.75rem;
+    min-height: 180px;
+    max-height: 300px;
+  }
+
+  .mermaid-diagram svg {
+    max-width: 100% !important;
+    max-height: 250px !important;
+    transform: scale(0.65) !important;
+  }
+
+  .fallback-diagram {
+    padding: 1rem;
+  }
+
+  .fallback-nodes {
+    gap: 0.75rem;
+  }
+
+  .fallback-node {
+    padding: 0.5rem 1rem;
+    min-width: 100px;
+    font-size: 0.875rem;
+  }
+
+  .diagram-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .diagram-controls {
+    align-self: center;
+  }
+
+  .zoom-btn {
+    min-width: 35px;
+    padding: 0.4rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Fallback Diagram Styles */
+.fallback-diagram {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.fallback-diagram-info {
+  margin-bottom: 1.5rem;
+}
+
+.fallback-diagram-info p {
+  margin: 0 0 0.25rem 0;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.fallback-diagram-info small {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.fallback-nodes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.fallback-node {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 500;
+  min-width: 120px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fallback-edge {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0.5rem 0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.875rem;
+}
+
+.fallback-diagram-code {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.fallback-diagram-code summary {
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.fallback-diagram-code summary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.fallback-diagram-code pre {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+  text-align: left;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.fallback-diagram-code code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Mermaid Diagram Black and White Theme Overrides */
+.mermaid-diagram {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border-radius: 12px;
+  padding: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.mermaid-diagram svg {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border-radius: 8px;
+  border: 2px solid #000000 !important;
+  padding: 16px;
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Force white background on all SVG root elements */
+.mermaid-diagram svg > rect:first-child,
+.mermaid-diagram svg > g:first-child {
+  fill: #ffffff !important;
+}
+
+.mermaid-container {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border-radius: 12px;
+  padding: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Node styling */
+.mermaid-diagram .node rect,
+.mermaid-diagram .node circle,
+.mermaid-diagram .node ellipse,
+.mermaid-diagram .node polygon,
+.mermaid-diagram .node path {
+  fill: #ffffff !important;
+  stroke: #000000 !important;
+  stroke-width: 2px !important;
+}
+
+/* Text styling */
+.mermaid-diagram .node text,
+.mermaid-diagram .nodeLabel,
+.mermaid-diagram .label {
+  fill: #000000 !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Edge styling - Force black lines */
+.mermaid-diagram .edgePath path,
+.mermaid-diagram .flowchart-link,
+.mermaid-diagram path,
+.mermaid-diagram line {
+  stroke: #000000 !important;
+  stroke-width: 2px !important;
+  fill: none !important;
+}
+
+/* Override any white or light colored strokes */
+.mermaid-diagram [stroke="white"],
+.mermaid-diagram [stroke="#fff"],
+.mermaid-diagram [stroke="#ffffff"],
+.mermaid-diagram [stroke="rgba(255,255,255"],
+.mermaid-diagram [stroke*="rgb(255"],
+.mermaid-diagram [stroke="transparent"] {
+  stroke: #000000 !important;
+}
+
+/* Force all SVG elements with white or transparent backgrounds to have white fill */
+.mermaid-diagram svg * {
+  background: transparent !important;
+}
+
+.mermaid-diagram svg {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* Edge labels */
+.mermaid-diagram .edgeLabel {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #000000 !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+  font-weight: 500 !important;
+}
+
+/* Cluster/Subgraph styling */
+.mermaid-diagram .cluster rect,
+.mermaid-diagram .cluster path {
+  fill: rgba(248, 249, 250, 0.8) !important;
+  stroke: #000000 !important;
+  stroke-width: 2px !important;
+  stroke-dasharray: none !important;
+}
+
+.mermaid-diagram .cluster text,
+.mermaid-diagram .cluster .nodeLabel {
+  fill: #000000 !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+/* Arrow markers */
+.mermaid-diagram marker path {
+  fill: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* Sequence diagram specific */
+.mermaid-diagram .actor {
+  fill: #ffffff !important;
+  stroke: #000000 !important;
+  stroke-width: 2px !important;
+}
+
+.mermaid-diagram .actor-line {
+  stroke: #000000 !important;
+  stroke-width: 1px !important;
+}
+
+.mermaid-diagram .messageLine0,
+.mermaid-diagram .messageLine1 {
+  stroke: #000000 !important;
+  stroke-width: 2px !important;
+}
+
+/* ER diagram specific */
+.mermaid-diagram .er.entityBox {
+  fill: #ffffff !important;
+  stroke: #000000 !important;
+  stroke-width: 2px !important;
+}
+
+.mermaid-diagram .er.attributeBoxEven,
+.mermaid-diagram .er.attributeBoxOdd {
+  fill: #f8f9fa !important;
+  stroke: #000000 !important;
+}
+
+/* Gantt chart specific */
+.mermaid-diagram .section {
+  fill: #ffffff !important;
+  stroke: #000000 !important;
+}
+
+.mermaid-diagram .task {
+  fill: #f8f9fa !important;
+  stroke: #000000 !important;
+}
+
+/* Pie chart specific */
+.mermaid-diagram .pie {
+  stroke: #000000 !important;
+  stroke-width: 2px !important;
+}
+
+/* Journey diagram specific */
+.mermaid-diagram .journey-section {
+  fill: #f8f9fa !important;
+  stroke: #000000 !important;
+}
+
+/* Force solid white background on all SVG elements */
+.mermaid-diagram svg,
+.mermaid-diagram svg > g {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* Override transparent backgrounds */
+.mermaid-diagram [fill="transparent"],
+.mermaid-diagram [fill="none"],
+.mermaid-diagram [fill="rgba(0,0,0,0)"] {
+  fill: #ffffff !important;
+}
+
+/* Additional overrides for any missed elements */
+.mermaid-diagram * {
+  color: #000000 !important;
+}
+
+/* Force any colored fills to white */
+.mermaid-diagram [fill="#ECECFF"],
+.mermaid-diagram [fill="#ffffde"],
+.mermaid-diagram [fill="#EEEEFF"],
+.mermaid-diagram [fill*="#"]:not([fill="#000000"]):not([fill="#ffffff"]) {
+  fill: #ffffff !important;
+}
+
+/* Force any colored strokes to black */
+.mermaid-diagram [stroke="#333"],
+.mermaid-diagram [stroke="#999"],
+.mermaid-diagram [stroke*="#"]:not([stroke="#000000"]) {
+  stroke: #000000 !important;
+}
+
+/* Ensure all paths and lines are visible with black stroke */
+.mermaid-diagram path[stroke],
+.mermaid-diagram line[stroke],
+.mermaid-diagram polyline[stroke] {
+  stroke: #000000 !important;
+  stroke-width: 2px !important;
+}
+
+/* Additional comprehensive overrides for all SVG elements */
+.mermaid-container svg,
+.mermaid-diagram svg {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+.mermaid-container path,
+.mermaid-diagram path,
+.mermaid-container line,
+.mermaid-diagram line,
+.mermaid-container polyline,
+.mermaid-diagram polyline {
+  stroke: #000000 !important;
+  stroke-width: 2px !important;
+}
+
+.mermaid-container [stroke="white"],
+.mermaid-container [stroke="#fff"],
+.mermaid-container [stroke="#ffffff"],
+.mermaid-container [stroke="transparent"],
+.mermaid-diagram [stroke="white"],
+.mermaid-diagram [stroke="#fff"],
+.mermaid-diagram [stroke="#ffffff"],
+.mermaid-diagram [stroke="transparent"] {
+  stroke: #000000 !important;
+}
+
+@media (max-width: 480px) {
+  .architecture-recommender {
+    padding: 0.5rem;
+  }
+
+  .input-section, .recommendation-section {
+    padding: 1rem;
+  }
+
+  .context-textarea {
+    font-size: 0.95rem;
+  }
+
+  .submit-btn, .reset-btn, .export-btn {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.25rem;
+  }
+}

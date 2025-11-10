@@ -1,0 +1,419 @@
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas'
+import type { ArchitectureRecommendationResponse, PDFExportOptions } from '../types'
+
+export class PDFExporter {
+  private static createPrintableContent(options: PDFExportOptions): HTMLElement {
+    const { recommendation, userContext } = options
+    
+    // Create a hidden container for the PDF content
+    const container = document.createElement('div')
+    container.className = 'pdf-export-container'
+    container.style.cssText = `
+      position: fixed;
+      top: -9999px;
+      left: -9999px;
+      width: 190mm;
+      max-width: 190mm;
+      background: #ffffff;
+      padding: 15mm;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #000000;
+      line-height: 1.5;
+      box-sizing: border-box;
+    `
+
+    // Create the content HTML
+    container.innerHTML = `
+      <!-- Header Section -->
+      <div class="pdf-header" style="
+        border-bottom: 3px solid #000000;
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+        text-align: center;
+      ">
+        <h1 style="
+          font-size: 24px;
+          font-weight: 700;
+          margin: 0 0 8px 0;
+          color: #000000;
+          letter-spacing: -0.02em;
+        ">Architecture Recommendation Report</h1>
+        <p style="
+          font-size: 14px;
+          color: #666666;
+          margin: 0;
+          font-weight: 400;
+        ">Generated on ${new Date().toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        })}</p>
+      </div>
+
+      <!-- Project Context Section -->
+      <div class="pdf-section" style="margin-bottom: 20px;">
+        <h2 style="
+          font-size: 16px;
+          font-weight: 600;
+          margin: 0 0 10px 0;
+          color: #000000;
+          border-left: 4px solid #000000;
+          padding-left: 10px;
+        ">Project Context</h2>
+        <div style="
+          background: #f8f9fa;
+          border: 1px solid #e9ecef;
+          border-radius: 6px;
+          padding: 12px;
+          font-size: 13px;
+          color: #333333;
+          line-height: 1.5;
+        ">${userContext}</div>
+      </div>
+
+      <!-- Recommended Architecture Section -->
+      <div class="pdf-section" style="margin-bottom: 20px;">
+        <h2 style="
+          font-size: 16px;
+          font-weight: 600;
+          margin: 0 0 10px 0;
+          color: #000000;
+          border-left: 4px solid #000000;
+          padding-left: 10px;
+        ">Recommended Architecture</h2>
+        <div style="
+          background: #000000;
+          color: #ffffff;
+          padding: 15px;
+          border-radius: 6px;
+          text-align: center;
+          font-size: 18px;
+          font-weight: 600;
+          margin-bottom: 15px;
+          letter-spacing: 0.01em;
+        ">${recommendation.selectedArchitecture}</div>
+      </div>
+
+      <!-- Analysis & Reasoning Section -->
+      <div class="pdf-section" style="margin-bottom: 20px;">
+        <h2 style="
+          font-size: 16px;
+          font-weight: 600;
+          margin: 0 0 10px 0;
+          color: #000000;
+          border-left: 4px solid #000000;
+          padding-left: 10px;
+        ">Analysis & Reasoning</h2>
+        <div style="
+          font-size: 13px;
+          color: #333333;
+          line-height: 1.5;
+          text-align: justify;
+          padding: 12px;
+          border: 1px solid #e9ecef;
+          border-radius: 6px;
+          background: #ffffff;
+        ">${recommendation.explanation}</div>
+      </div>
+
+      <!-- Architecture Diagram Section -->
+      <div class="pdf-section" style="margin-bottom: 20px;">
+        <h2 style="
+          font-size: 18px;
+          font-weight: 600;
+          margin: 0 0 12px 0;
+          color: #000000;
+          border-left: 4px solid #000000;
+          padding-left: 12px;
+        ">Architecture Diagram</h2>
+        <div class="pdf-diagram-container" style="
+          border: 2px solid #000000;
+          border-radius: 8px;
+          padding: 12px;
+          background: #ffffff;
+          text-align: center;
+          min-height: 200px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: visible;
+        ">
+          <div class="pdf-diagram-placeholder" style="
+            color: #666666;
+            font-size: 14px;
+          ">Diagram will be rendered here</div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="pdf-footer" style="
+        border-top: 1px solid #e9ecef;
+        padding-top: 15px;
+        margin-top: 30px;
+        text-align: center;
+        font-size: 12px;
+        color: #666666;
+      ">
+        <p style="margin: 0;">
+          Generated by Architecture Recommendation System | 
+          Professional AI-powered architectural analysis
+        </p>
+      </div>
+    `
+
+    return container
+  }
+
+  private static async renderDiagramToPDF(container: HTMLElement, recommendation: ArchitectureRecommendationResponse): Promise<void> {
+    const diagramContainer = container.querySelector('.pdf-diagram-container') as HTMLElement
+    const placeholder = container.querySelector('.pdf-diagram-placeholder') as HTMLElement
+    
+    if (!diagramContainer || !placeholder) return
+
+    try {
+      // Create a temporary diagram element with better sizing
+      const tempDiagramContainer = document.createElement('div')
+      tempDiagramContainer.style.cssText = `
+        position: fixed;
+        top: -9999px;
+        left: -9999px;
+        width: 600px;
+        height: 400px;
+        background: #ffffff;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow: visible;
+      `
+      
+      // Import and initialize Mermaid for PDF
+      const mermaid = await import('mermaid')
+      
+      mermaid.default.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          primaryColor: '#ffffff',
+          primaryTextColor: '#000000',
+          primaryBorderColor: '#000000',
+          lineColor: '#000000',
+          secondaryColor: '#f8f9fa',
+          tertiaryColor: '#ffffff',
+          background: '#ffffff',
+          backgroundColorPrimary: '#ffffff',
+          backgroundColorSecondary: '#f8f9fa',
+          mainBkg: '#ffffff',
+          secondBkg: '#f8f9fa',
+          tertiaryBkg: '#e9ecef',
+          fontSize: '14px',
+          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          nodeBkg: '#ffffff',
+          nodeBorder: '#000000',
+          clusterBkg: '#f8f9fa',
+          clusterBorder: '#000000',
+          textColor: '#000000',
+          titleColor: '#000000',
+          nodeTextColor: '#000000',
+          edgeLabelBackground: '#ffffff',
+          edgeLabelColor: '#000000',
+          cScale0: '#000000',
+          cScale1: '#000000',
+          cScale2: '#000000',
+          gridColor: '#000000',
+          stroke: '#000000',
+          fill: '#ffffff'
+        },
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: false,
+          curve: 'linear',
+          nodeSpacing: 40,
+          rankSpacing: 50,
+          padding: 15,
+        },
+        er: {
+          useMaxWidth: false,
+        },
+        sequence: {
+          useMaxWidth: false,
+        },
+        gantt: {
+          useMaxWidth: false,
+        },
+        journey: {
+          useMaxWidth: false,
+        },
+        pie: {
+          useMaxWidth: false,
+        }
+      })
+
+      document.body.appendChild(tempDiagramContainer)
+
+      const diagramId = `pdf-diagram-${Date.now()}`
+      const { svg } = await mermaid.default.render(diagramId, recommendation.diagramCode)
+      
+      tempDiagramContainer.innerHTML = svg
+      
+      // Convert SVG to canvas for better PDF rendering
+      const svgElement = tempDiagramContainer.querySelector('svg')
+      if (svgElement) {
+        // Style the SVG for black and white theme
+        svgElement.style.background = '#ffffff'
+        
+        // Apply black and white styles to SVG elements
+        const styleElement = document.createElement('style')
+        styleElement.textContent = `
+          svg {
+            background: #ffffff !important;
+            background-color: #ffffff !important;
+          }
+          .node rect, .node circle, .node ellipse, .node polygon, .node path {
+            fill: #ffffff !important;
+            stroke: #000000 !important;
+            stroke-width: 2px !important;
+          }
+          .node text, .nodeLabel, text {
+            fill: #000000 !important;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+            color: #000000 !important;
+          }
+          .edgePath path, path, line, polyline {
+            stroke: #000000 !important;
+            stroke-width: 2px !important;
+            fill: none !important;
+          }
+          .edgeLabel {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            border: 1px solid #000000 !important;
+            border-radius: 4px !important;
+            padding: 2px 4px !important;
+          }
+          .cluster rect, .cluster path {
+            fill: #f8f9fa !important;
+            stroke: #000000 !important;
+            stroke-width: 2px !important;
+          }
+          .cluster text, .cluster .nodeLabel {
+            fill: #000000 !important;
+            font-weight: 600 !important;
+          }
+          [stroke="white"], [stroke="#fff"], [stroke="#ffffff"], [stroke*="rgb(255"] {
+            stroke: #000000 !important;
+          }
+          [fill="transparent"], [fill="none"] {
+            fill: #ffffff !important;
+          }
+        `
+        svgElement.appendChild(styleElement)
+        
+        // Render to canvas with better settings
+        const canvas = await html2canvas(tempDiagramContainer, {
+          backgroundColor: '#ffffff',
+          scale: 1.5,
+          logging: false,
+          useCORS: true,
+          allowTaint: true,
+          width: tempDiagramContainer.scrollWidth,
+          height: tempDiagramContainer.scrollHeight,
+          windowWidth: 800,
+          windowHeight: 600
+        })
+        
+        // Replace placeholder with canvas
+        placeholder.remove()
+        diagramContainer.style.padding = '8px'
+        diagramContainer.style.display = 'block'
+        diagramContainer.appendChild(canvas)
+        canvas.style.width = '100%'
+        canvas.style.maxWidth = '100%'
+        canvas.style.height = 'auto'
+        canvas.style.display = 'block'
+      }
+      
+      document.body.removeChild(tempDiagramContainer)
+    } catch (error) {
+      console.error('Error rendering diagram for PDF:', error)
+      placeholder.textContent = 'Diagram could not be rendered'
+      placeholder.style.color = '#666666'
+    }
+  }
+
+  static async exportToPDF(options: PDFExportOptions): Promise<void> {
+    try {
+      // Create printable content
+      const container = this.createPrintableContent(options)
+      document.body.appendChild(container)
+
+      // Render diagram
+      await this.renderDiagramToPDF(container, options.recommendation)
+
+      // Wait a bit for rendering to complete
+      await new Promise(resolve => setTimeout(resolve, 500))
+
+      // Generate PDF with optimized sizing and full content capture
+      const canvas = await html2canvas(container, {
+        scale: 1.2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        logging: false,
+        allowTaint: true,
+        width: container.scrollWidth,
+        height: container.scrollHeight,
+        windowWidth: container.scrollWidth,
+        windowHeight: container.scrollHeight
+      })
+
+      const imgData = canvas.toDataURL('image/png')
+      
+      // Create PDF with optimized layout
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+      })
+
+      const pageWidth = 210 // A4 width in mm
+      const pageHeight = 297 // A4 height in mm
+      const margin = 10 // 10mm margin
+      const availableWidth = pageWidth - (2 * margin)
+      const availableHeight = pageHeight - (2 * margin)
+      
+      // Calculate optimal size to fit in one page
+      const imgAspectRatio = canvas.width / canvas.height
+      let imgWidth = availableWidth
+      let imgHeight = availableWidth / imgAspectRatio
+      
+      // If height exceeds available space, scale down
+      if (imgHeight > availableHeight) {
+        imgHeight = availableHeight
+        imgWidth = availableHeight * imgAspectRatio
+      }
+      
+      // Center the image on the page
+      const xPosition = (pageWidth - imgWidth) / 2
+      const yPosition = (pageHeight - imgHeight) / 2
+
+      // Add single page with fitted content
+      pdf.addImage(imgData, 'PNG', xPosition, yPosition, imgWidth, imgHeight)
+
+      // Clean up
+      document.body.removeChild(container)
+
+      // Download PDF
+      const fileName = `${options.recommendation.selectedArchitecture.replace(/\s+/g, '_')}_Architecture_Report.pdf`
+      pdf.save(fileName)
+
+    } catch (error) {
+      console.error('Error generating PDF:', error)
+      throw new Error('Failed to generate PDF report')
+    }
+  }
+}
+
+export default PDFExporter
