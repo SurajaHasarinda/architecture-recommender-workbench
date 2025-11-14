@@ -28,7 +28,7 @@ const ArchitectureRecommender = () => {
     setError(null)
 
     try {
-      const response = await fetch('http://localhost:8000/api/recommend-architecture', {
+      const response = await fetch('http://157.245.48.132:8000/api/recommend-architecture', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
