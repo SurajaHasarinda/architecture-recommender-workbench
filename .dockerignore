@@ -1,0 +1,37 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+*.md
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Data (will be mounted as volume)
+chroma_db/
+
+# Frontend
+view/
+node_modules/

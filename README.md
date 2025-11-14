@@ -94,6 +94,67 @@ GOOGLE_API_KEY=your_google_gemini_api_key_here
 
 The API will be available at `http://localhost:8000`
 
+## 🐳 Running with Docker
+
+### Prerequisites
+
+- Docker Desktop (Windows/Mac) or Docker Engine (Linux)
+- Docker Compose
+
+### Quick Start with Docker
+
+1. **Create `.env` file:**
+
+```env
+GOOGLE_API_KEY=your_google_gemini_api_key_here
+```
+
+2. **Run the Docker startup script:**
+
+**Windows:**
+
+```powershell
+.\start-docker.ps1
+```
+
+**Linux/Mac:**
+
+```bash
+chmod +x start-docker.sh
+./start-docker.sh
+```
+
+3. **Access the application:**
+   - Frontend: http://localhost
+   - Backend API: http://localhost:8000
+   - API Documentation: http://localhost:8000/docs
+
+### Docker Management Commands
+
+```bash
+# Start containers
+docker-compose up -d
+
+# Stop containers
+docker-compose down
+
+# View logs
+docker-compose logs -f
+
+# View specific service logs
+docker-compose logs -f backend
+docker-compose logs -f frontend
+
+# Rebuild images
+docker-compose up -d --build
+
+# Restart services
+docker-compose restart
+
+# Remove everything (including volumes)
+docker-compose down -v
+```
+
 ## 🧪 Testing
 
 ### Using Swagger UI (Recommended)

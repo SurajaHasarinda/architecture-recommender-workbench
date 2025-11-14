@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: arch-recommender-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - CHROMA_PERSIST_DIRECTORY=/app/chroma_db
+      - DOCS_DIRECTORY=/app/architecture_docs
+    volumes:
+      - ./chroma_db:/app/chroma_db
+      - ./architecture_docs:/app/architecture_docs
+    restart: unless-stopped
+    networks:
+      - arch-network
+
+  frontend:
+    build:
+      context: ./view
+      dockerfile: Dockerfile
+    container_name: arch-recommender-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - arch-network
+
+networks:
+  arch-network:
+    driver: bridge
+
+volumes:
+  chroma_db:
+  architecture_docs:
